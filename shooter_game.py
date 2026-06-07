@@ -47,14 +47,6 @@ class Player(DinamicSprites):
     def update(self):
         self.rect.x += self.speed
 
-    #def fire(self):
-        #global bullets
-        #fire.play()
-        #ullet = Bullet('bullet.png', self.rect.centerx, self.rect.top, 12, 30, 5)
-        #bullet.rect.centerx = self.rect.centerx
-        #bullets.add(bullet)
-        #return bullet
-
 class Ball(DinamicSprites):
     def __init__(self, player_image, player_x, player_y, size_x, size_y, player_speed = 0):
         super().__init__(player_image, player_x, player_y, size_x, size_y)
@@ -71,13 +63,6 @@ class Ball(DinamicSprites):
             self.speed = randint(1,6)
             lost += 1
 
-#class Bullet(DinamicSprites):
-    #def __init__(self, player_image, player_x, player_y, size_x, size_y, player_speed=5):
-        #super().__init__(player_image, player_x, player_y, size_x, size_y, player_speed)
-
-    #def update(self):
-        #self.rect.y -= self.speed
-
          
 window = display.set_mode((700, 500))
 display.set_caption('Tirador')
@@ -88,17 +73,14 @@ monsters = sprite.Group()
 bullets = sprite.Group()
 
 
-#player = Player('prue.png', 300, 420, 65, 65, 0)
-
-#for i in range(5):
-#    monsters.add(Enemy("ufo.png", randint(0,630), 0, 70, 45, randint(1,4)))
-
 lost = 0
 score = 0
 txt_font = font.SysFont('Arial', 40)
 msg_lost = txt_font.render('FALLOS: ' + str(lost), True, (255, 255, 255))
 msg_score = txt_font.render('PUNTAJE: ' + str(lost), True, (255, 255, 255))
-ball = Ball('basketball.png',150, 150, 65, 65, 0)
+ball = Ball('basketball.png',325, 185, 65, 65, 0)
+player1 = Player("paleta.png", 70, 150, 20, 200, 2)
+player2 = Player("paleta.png", 610, 150, 20, 200, 2)
 i = 0
 run = True
 timeshot = tiempo()
@@ -116,6 +98,8 @@ while run:
     window.fill(bg)
     ball.update()
     ball.reset()
+    player1.reset()
+    player2.reset()
     
     window.blit(msg_lost, (30, 30))
     window.blit(msg_score, (30, 80))
